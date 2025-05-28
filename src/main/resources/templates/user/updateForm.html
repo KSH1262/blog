@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="content">
+
+    <div class="container">
+        <form>
+            <input type="hidden" id="id" th:value="${principal.user.id}"/>
+            <br/>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" th:value="${principal.user.username}" class="form-control" placeholder="Enter username" id="username" readonly>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="password">
+            </div>
+            <br/>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" th:value="${principal.user.email}" class="form-control" placeholder="Enter email" id="email">
+            </div>
+
+        </form>
+        <br/>
+        <button id="btn-update" class="btn btn-primary">수정완료</button>
+
+    </div>
+    <br/>
+
+    <script src="/js/user.js"></script>
+</th:block>
+</html>

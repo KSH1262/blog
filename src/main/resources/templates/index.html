@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="script">
+    <script th:src="@{/js/index.js}"></script>
+</th:block>
+<th:block layout:fragment="content">
+    <br/>
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+
+                <!-- Nested row for non-featured blog posts-->
+                <div class="container">
+                    <div class="row" th:each="rowIndex : ${#numbers.sequence(0, boards.content.size() - 1, 2)}">
+                        <!-- 첫 번째 카드 -->
+                        <div class="col-md-6" th:if="${rowIndex < boards.content.size()}">
+                            <div class="card mb-4" >
+
+                                <div class="card-body">
+                                    <h2 class="card-title h4" th:text="${boards.content[rowIndex].title}">Post Title</h2>
+                                    <p class="card-text" th:text="${boards.content[rowIndex].contentPreview}"></p>
+                                    <a class="btn btn-outline-dark" th:href="@{/board/{id}(id=${boards.content[rowIndex].id})}">Read more →</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 두 번째 카드 -->
+                        <div class="col-md-6" th:if="${rowIndex + 1 < boards.content.size()}">
+                            <div class="card mb-4">
+
+                                <div class="card-body">
+                                    <h2 class="card-title h4" th:text="${boards.content[rowIndex + 1].title}">Post Title</h2>
+                                    <p class="card-text" th:text="${boards.content[rowIndex + 1].contentPreview}"></p>
+                                    <a class="btn btn-outline-dark" th:href="@{/board/{id}(id=${boards.content[rowIndex + 1].id})}">Read more →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                    <ul class="pagination justify-content-center my-4">
+                        <!-- 이전 버튼 -->
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link" th:href="@{/(page=${currentPage - 1})}" aria-disabled="${currentPage == 0}">◁</a>
+                        </li>
+
+                        <!-- 페이지 숫자 버튼 -->
+                        <li class="page-item" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
+                            th:classappend="${pageNum == currentPage} ? 'active'">
+                            <a class="page-link" th:href="@{/(page=${pageNum})}" th:text="${pageNum + 1}"></a>
+                        </li>
+
+                        <!-- 다음 버튼 -->
+                        <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                            <a class="page-link" th:href="@{/(page=${currentPage + 1})}" aria-disabled="${currentPage == totalPages - 1}">▷</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+                <!-- Search widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Search</div>
+                    <div class="card-body">
+                        <form th:action="@{/}" method="get">
+                            <div class="input-group">
+                                <input class="form-control" type="text" name="keyword" placeholder="search" th:value="${searchDto.keyword}">
+                                <button class="btn btn-primary" id="button-search" type="submit">검색</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">최근글</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li th:each="board, iterStat : ${boards.content}" th:if="${iterStat.index < 3}">
+                                        <a th:href="@{/board/{id}(id=${board.id})}" th:text="${board.title}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li th:each="board, iterStat : ${boards.content}" th:if="${iterStat.index >= 3 and iterStat.index < 6}">
+                                        <a th:href="@{/board/{id}(id=${board.id})}" th:text="${board.title}"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- TODO List Widget -->
+                <div class="card mb-4">
+                    <div class="card-header">TODO List</div>
+                    <div class="card-body">
+                        <input type="text" id="todo-input" class="form-control mb-2" placeholder="할 일을 입력하고 Enter 누르세요">
+                        <ul id="todo-list" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

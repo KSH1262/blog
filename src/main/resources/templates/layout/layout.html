@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="blogWrapper">
+    <th:block th:replace="~{/layout/fragments/header :: headerLayout}" ></th:block>
+
+    <body>
+    <div class="bolgContent">
+        <th:block layout:fragment="content"></th:block>
+    </div>
+    </body>
+
+    <th:block th:replace="~{/layout/fragments/footer :: footerLayout}"></th:block>
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+</div>
+</html>
