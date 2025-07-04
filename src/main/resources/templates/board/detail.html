@@ -91,6 +91,28 @@
             </div>
           </div>
         </div>
+        <!-- Categories widget-->
+        <div class="card mb-4">
+          <div class="card-header">최근글</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                  <li th:each="board, iterStat : ${recentBoards}" th:if="${iterStat.index < 3}">
+                    <a th:href="@{/board/{id}(id=${board.id})}" th:text="${board.title}"></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <ul class="list-unstyled mb-0">
+                  <li th:each="board, iterStat : ${recentBoards}" th:if="${iterStat.index >= 3}">
+                    <a th:href="@{/board/{id}(id=${board.id})}" th:text="${board.title}"></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- TODO List Widget -->
         <div class="card mb-4">
           <div class="card-header">TODO List</div>

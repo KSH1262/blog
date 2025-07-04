@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 public class BoardController {
 
@@ -27,6 +29,7 @@ public class BoardController {
     public String index(@ModelAttribute BoardSearchDto searchDto, Model model,
                         @PageableDefault(size = 8,sort = "id",direction = Sort.Direction.DESC)Pageable pageable) {
         Page<BoardResponseDto> boards = boardService.searchBoards(searchDto, pageable);
+        List<BoardResponseDto> recentBoards = boardService.getRecentBoards();
 
         int currentPage = pageable.getPageNumber();
         int totalPages = boards.getTotalPages();
@@ -34,6 +37,7 @@ public class BoardController {
         int endPage = Math.min(startPage + 4, totalPages - 1);
 
         model.addAttribute("boards", boards);
+        model.addAttribute("recentBoards", recentBoards);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
@@ -46,6 +50,7 @@ public class BoardController {
     public String findById(@PathVariable int id, Model model, @AuthenticationPrincipal PrincipalDetail principal){
         model.addAttribute("board", boardService.reading(id));
         model.addAttribute("principal", principal);
+        model.addAttribute("recentBoards", boardService.getRecentBoards());
         return "board/detail";
     }
 
