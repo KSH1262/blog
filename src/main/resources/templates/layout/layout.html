@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div class="blogWrapper">
-    <th:block th:replace="~{/layout/fragments/header :: headerLayout}" ></th:block>
+    <th:block th:replace="~{layout/fragments/header :: headerLayout}" ></th:block>
 
     <body>
     <div class="bolgContent">
@@ -9,7 +9,7 @@
     </div>
     </body>
 
-    <th:block th:replace="~{/layout/fragments/footer :: footerLayout}"></th:block>
+    <th:block th:replace="~{layout/fragments/footer :: footerLayout}"></th:block>
     <th:block layout:fragment="script"></th:block>
     <th:block layout:fragment="css"></th:block>
 </div>

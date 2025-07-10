@@ -13,12 +13,12 @@ public class UserController {
     @GetMapping("/auth/user/joinForm")
     public String joinForm(Model model) {
         model.addAttribute("userJoinDto", new UserJoinDto());
-        return "/user/joinForm";
+        return "user/joinForm";
     }
 
     @GetMapping("/auth/user/loginForm")
     public String loginForm() {
-        return "/user/loginForm";
+        return "user/loginForm";
     }
 
     @GetMapping("user/updateForm")
