@@ -3,7 +3,8 @@
 FROM eclipse-temurin:17-jdk-focal AS build
 WORKDIR /app
 COPY . .
-RUN ./gradlew bootJar # Gradle을 사용하여 JAR 파일 빌드
+RUN chmod +x ./gradlew
+RUN ./gradlew bootJar
 
 # Stage 2: 최종 실행 이미지 생성 (JRE만 필요)
 FROM eclipse-temurin:17-jre-focal
