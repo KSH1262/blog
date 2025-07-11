@@ -1,0 +1,32 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: blog
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_LOCAL_URL}
+    #?createDatabaseIfNotExist=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  servlet:
+    multipart:
+      maxFileSize: 50MB
+      maxRequestSize: 100MB
+
+  thymeleaf:
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
