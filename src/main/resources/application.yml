@@ -6,7 +6,7 @@ spring:
     name: blog
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${DB_LOCAL_URL}
+    url: ${DB_URL}
     #?createDatabaseIfNotExist=true
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
