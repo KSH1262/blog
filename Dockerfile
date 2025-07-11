@@ -1,5 +1,5 @@
 # Dockerfile
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-focal
 VOLUME /tmp
 ARG JAR_FILE=build/libs/test2-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
