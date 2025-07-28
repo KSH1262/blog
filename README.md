@@ -44,10 +44,13 @@
 
 ## 🖼️ 주요 화면
 
-| 메인 페이지                                                 | 게시글 상세 | 로그인 |
-|--------------------------------------------------------|-------------|--------|
-| ![main](./blog/src/main/resources/static/img/main.png) | ![detail](./blog/src/main/resources/static/img/detail.png) | ![login](./blog/src/main/resources/static/img/login.png) |
-
+| 메인 페이지                                            | 
+|---------------------------------------------------|
+| ![main](./src/main/resources/static/img/main.png) | 
+| 게시글 상세 |
+| ![detail](./src/main/resources/static/img/detail.png) |
+| 로그인 |
+| ![login](./src/main/resources/static/img/login.png) |
 
 
 ---
