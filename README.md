@@ -44,9 +44,9 @@
 
 ## 🖼️ 주요 화면
 
-| 메인 페이지                  | 게시글 상세 | 로그인 |
-|-------------------------|-------------|--------|
-| ![main](./img/main.png) | ![detail](./img/detail.png) | ![login](./img/login.png) |
+| 메인 페이지                                                 | 게시글 상세 | 로그인 |
+|--------------------------------------------------------|-------------|--------|
+| ![main](./blog/src/main/resources/static/img/main.png) | ![detail](./blog/src/main/resources/static/img/detail.png) | ![login](./blog/src/main/resources/static/img/login.png) |
 
 
 
