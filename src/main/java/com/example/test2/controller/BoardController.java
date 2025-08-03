@@ -62,4 +62,23 @@ public class BoardController {
 
     @GetMapping("/board/saveForm")
     public String saveForm(){ return "board/saveForm"; }
+
+    @GetMapping("/user/posts")
+    public String myPosts(Model model, @AuthenticationPrincipal PrincipalDetail principal,
+                          @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<BoardResponseDto> boards = boardService.findBoardsByUser(principal.getUser(), pageable);
+
+        int currentPage = pageable.getPageNumber();
+        int totalPages = boards.getTotalPages();
+        int startPage = Math.max(0, currentPage - 2);
+        int endPage = Math.min(startPage + 4, totalPages - 1);
+
+        model.addAttribute("boards", boards);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPages", totalPages);
+
+        return "board/myPosts";
+    }
 }

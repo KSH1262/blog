@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="content">
+    <br/>
+    <div class="container">
+        <h2>내가 작성한 글</h2>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row" th:each="rowIndex : ${#numbers.sequence(0, boards.content.size() - 1, 2)}">
+                    <!-- 첫 번째 카드 -->
+                    <div class="col-md-6" th:if="${rowIndex < boards.content.size()}">
+                        <div class="card mb-4" >
+
+                            <div class="card-body">
+                                <h2 class="card-title h4" th:text="${boards.content[rowIndex].title}">Post Title</h2>
+                                <p class="card-text" th:text="${boards.content[rowIndex].contentPreview}"></p>
+                                <a class="btn btn-outline-dark" th:href="@{/board/{id}(id=${boards.content[rowIndex].id})}">Read more →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 두 번째 카드 -->
+                    <div class="col-md-6" th:if="${rowIndex + 1 < boards.content.size()}">
+                        <div class="card mb-4">
+
+                            <div class="card-body">
+                                <h2 class="card-title h4" th:text="${boards.content[rowIndex + 1].title}">Post Title</h2>
+                                <p class="card-text" th:text="${boards.content[rowIndex + 1].contentPreview}"></p>
+                                <a class="btn btn-outline-dark" th:href="@{/board/{id}(id=${boards.content[rowIndex + 1].id})}">Read more →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <nav th:if="${boards.totalPages > 1}">
+                    <ul class="pagination justify-content-center mt-4">
+                        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                            <a class="page-link" th:href="@{/user/posts(page=${currentPage - 1})}">이전</a>
+                        </li>
+                        <li class="page-item" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
+                            th:classappend="${pageNum == currentPage} ? 'active'">
+                            <a class="page-link" th:href="@{/user/posts(page=${pageNum})}" th:text="${pageNum + 1}"></a>
+                        </li>
+                        <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                            <a class="page-link" th:href="@{/user/posts(page=${currentPage + 1})}">다음</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</th:block>
+</html>

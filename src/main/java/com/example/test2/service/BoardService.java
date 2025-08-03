@@ -112,4 +112,9 @@ public class BoardService {
                 .map(BoardResponseDto::fromEntity)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public Page<BoardResponseDto> findBoardsByUser(User user, Pageable pageable) {
+        return boardRepository.findByUser(user, pageable).map(BoardResponseDto::fromEntity);
+    }
 }

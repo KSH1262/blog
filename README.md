@@ -58,15 +58,15 @@
 ---
 ## 🗂️ 디렉토리 구조
 
-src
-├── config              # Spring Security, QueryDSL 설정
-├── controller          # API 및 뷰 컨트롤러
-├── dto                 # 데이터 전송 객체
-├── entity              # JPA 엔티티 (User, Board, Reply 등)
-├── repository          # JPA + QueryDSL
-├── service             # 비즈니스 로직
-├── static              # JS, CSS, 이미지
-└── templates           # Thymeleaf HTML 템플릿
+* src
+* ├── config              # Spring Security, QueryDSL 설정
+* ├── controller          # API 및 뷰 컨트롤러
+* ├── dto                 # 데이터 전송 객체
+* ├── entity              # JPA 엔티티 (User, Board, Reply 등)
+* ├── repository          # JPA + QueryDSL
+* ├── service             # 비즈니스 로직
+* ├── static              # JS, CSS, 이미지
+* └── templates           # Thymeleaf HTML 템플릿
 
 
 ---

@@ -35,7 +35,7 @@ let index = {
             alert("글작성이 완료되었습니다.");
             location.href = "/";
         }).fail(function(error){ // 실패
-            alert(JSON.stringify(error));
+            alert("글 작성 실패: " + JSON.stringify(error));
         });
     }
 
